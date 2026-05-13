@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTeamById, getPlayersByTeam } from "../services/nfl";
-
+import { Link } from "react-router-dom";
 const TeamDetails = () => {
   const { id } = useParams();
 
@@ -39,6 +39,7 @@ const TeamDetails = () => {
           {player.player.name}
         </div>
       ))}
+      <Link to="/">← Back</Link>
     </div>
   );
 };
