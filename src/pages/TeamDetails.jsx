@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getTeamById, getPlayersByTeam } from "../services/nfl";
@@ -40,6 +41,9 @@ const TeamDetails = () => {
         </div>
       ))}
       <Link to="/">← Back</Link>
+      <Link to={`/player/${player.player.id}`}>
+            <div>{player.player.name}</div>
+      </Link>
     </div>
   );
 };
