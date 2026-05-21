@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getPlayerStats } from "../services/nfl";
-
+import { useFavorites } from "../context/FavoritesContext";
 const PlayerDetails = () => {
   const { id } = useParams();
   const [stats, setStats] = useState([]);
-
+  const { dispatch, favorites } = useFavorites();
+  const isFavorited = favorites.find(f => f.id === player?.id);
   useEffect(() => {
     const fetchStats = async () => {
       const data = await getPlayerStats(id);
@@ -29,6 +30,20 @@ const PlayerDetails = () => {
       <p>Games: {games?.games?.appearances ?? "N/A"}</p>
       <p>Passing Yards: {games?.passing?.yards ?? "N/A"}</p>
       <p>Touchdowns: {games?.passing?.touchdowns ?? "N/A"}</p>
+
+    <button
+            onClick={() =>
+                dispatch({
+                type: isFavorited ? "REMOVE" : "ADD",
+                payload: {
+                    id: player.id,
+                    name: player.name
+                }
+                })
+            }
+            >
+            {isFavorited ? "Remove Favorite" : "Add Favorite"}
+    </button>
     </div>
   );
 };

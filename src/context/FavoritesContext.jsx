@@ -52,7 +52,7 @@ export const FavoritesProvider = ({ children }) => {
         favorites: state.favorites,
         dispatch
       }}
-    >
+    >oi
       {children}
     </FavoritesContext.Provider>
   );
