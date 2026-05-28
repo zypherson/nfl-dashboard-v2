@@ -1,6 +1,13 @@
 import { useState } from "react";
 import { getPlayerStats } from "../services/nfl";
-
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend
+} from "recharts";
 const ComparePlayers = () => {
 
   const [playerOneId, setPlayerOneId] = useState("");
@@ -17,6 +24,25 @@ const ComparePlayers = () => {
     setPlayerOne(p1[0]);
     setPlayerTwo(p2[0]);
   };
+  const data = [
+    {
+      stat: "Yards",
+      playerOne:
+        playerOne?.statistics[0]?.passing?.yards || 0,
+
+      playerTwo:
+        playerTwo?.statistics[0]?.passing?.yards || 0
+    },
+    {
+      stat: "TDs",
+      playerOne:
+        playerOne?.statistics[0]?.passing?.touchdowns || 0,
+
+      playerTwo:
+        playerTwo?.statistics[0]?.passing?.touchdowns || 0
+    }
+  ];
+
 
   return (
     <div>
@@ -76,6 +102,15 @@ const ComparePlayers = () => {
         </div>
 
       )}
+      <BarChart width={500} height={300} data={data}>
+        <XAxis dataKey="stat" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+
+        <Bar dataKey="playerOne" />
+        <Bar dataKey="playerTwo" />
+      </BarChart>
 
     </div>
   );
