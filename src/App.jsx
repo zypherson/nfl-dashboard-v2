@@ -4,6 +4,7 @@ import TeamDetails from "./pages/TeamDetails";
 import PlayerDetails from "./pages/PlayerDetails";
 import Favorites from "./pages/Favorites";
 import Navbar from "./components/Navbar";
+import ComparePlayers from "./pages/ComparePlayers";
 function App() {
   return (
     <Router>
